@@ -1,0 +1,2 @@
+https://www.youtube.com/watch?v=sm1mokevMWk A whole django basic walkthrough. this is 3 ish hours long and outdated but,
+it seems to be still working and gives some basic insight on how the system works.
