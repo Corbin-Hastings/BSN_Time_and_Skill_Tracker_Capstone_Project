@@ -1,6 +1,11 @@
 {% extends "base.html" %} {% block title %} Helloworld {% endblock %}
 {% block content %}
 <!-- this content can be any kind of HTML, as complex as you want -->
-<p> what in the world is up my dude?</p>
+<p> you making an account?</p>
 
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Sign up</button>
+</form>
 {% endblock %}
