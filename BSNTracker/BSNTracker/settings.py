@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ew58729f53i$e12(gdo!nz!ueqgp!mplw1(f77g)*sa%w07=uu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['corbinhast.pythonanywhere.com']
+ALLOWED_HOSTS = ['corbinhast.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'BSNTracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'BSNTracker' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
