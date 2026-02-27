@@ -1,0 +1,69 @@
+
+{% extends "base.html" %}
+
+<style>
+    .my-box2 {
+            border: 2px solid black;
+            padding: 20px;
+            margin: 50px;
+            background-color: white;
+            width: 500px;
+            text-align: center;
+
+            color: black;
+        }
+
+        .my-box3 {
+            border: 2px solid black;
+            padding: 20px;
+            margin: 50px;
+            background-color: white;
+            width: 300px;
+            text-align: left;
+            font-family: Arial, sans-serif;
+            color: black;
+        }
+
+
+</style>
+
+{% block title %}Hours Page{% endblock %}
+
+{% block content %}
+    <div class="my-box">
+        <p>Log Hours</p>
+    </div>
+
+<!--
+
+    <div class="my-box3">
+        <form action="/hours/" method="POST">
+            {% csrf_token %}
+            <p><b> Hours: </b></p>
+            <input type="time" id="appt" name="appt">
+            <label for="to"> to </label>
+            <input type="time" id="to" name="to">
+
+            <p><b> Date Completed: </b></p>
+
+                <label for="start"></label><input type="date" id="start" name="trip-start" />
+                <p><b> Location: </b></p>
+                <label for="location"></label><input type="text" id="location" name="location">
+            <p><b> Instructor: </b></p>
+                <label for="instructor"></label><select id="instructor" name="instructor">
+            <option value="nurse">Nurse</option>
+            <option value="nurse">Nurse</option>
+            <option value="nurse">Nurse</option>
+            </select>
+            <p><b> </b></p>
+            <input type="submit" value="Submit Hours">`
+        </form>
+
+    </div>
+    -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
