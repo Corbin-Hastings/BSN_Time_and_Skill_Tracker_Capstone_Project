@@ -1,0 +1,170 @@
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.navbar {
+    background-color: #a71930;
+    padding: 0;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    background-color: #911930;
+    color: white;
+}
+
+.form-box {
+    width: 50%;
+    margin: 40px auto;
+    padding: 25px;
+    background: white;
+    box-shadow: 0 1px 4px rgba(0,0,50,0.3);
+    border-radius: 6px;
+}
+
+form p {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #d6d4d4;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #a71930;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.form-submit:hover {
+    background-color: #911930;
+}
+
+.summary-box {
+    border: 2px solid black;
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+    color: black;
+    background-color: white;
+    width: 500px;
+}
+
+.table-box {
+    width: 80%;
+    margin: 30px auto;
+}
+
+.table-box table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-box th,
+.table-box td {
+    border: 1px solid #d6d4d4;
+    text-align: left;
+    padding: 10px;
+}
+
+.table-box th {
+    background-color: #f2f2f2;
+    font-size: 16px;
+}
+
+.table-box caption {
+    caption-side: top;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.progress-container {
+    width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/*change*/
+progress {
+    width: 100%;
+    height: 25px;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #e0e0e0;
+    border: 1px solid #d6d4d4;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-value {
+    background-color: #a71930;
+    transition: none;
+}
+
+progress::-moz-progress-bar {
+    background-color: #a71930;
+    transition: none;
+}
+
+progress::-ms-fill {
+    background-color: #a71930;
+    transition: none;
+}
+
+
+/*unused*/
+
+.page-link {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.page-link a {
+    text-decoration: none;
+    color: #a71930;
+    font-weight: bold;
+}
+
+.page-link a:hover {
+    text-decoration: underline;
+}

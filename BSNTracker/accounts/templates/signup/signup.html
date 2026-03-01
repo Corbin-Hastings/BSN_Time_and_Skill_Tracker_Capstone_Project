@@ -1,11 +1,13 @@
-{% extends "base.html" %} {% block title %} Helloworld {% endblock %}
-{% block content %}
-<!-- this content can be any kind of HTML, as complex as you want -->
-<p> you making an account?</p>
+{% extends "base.html" %} 
+{% block title %}Sign Up{% endblock %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Sign up</button>
-</form>
+{% block content %}
+<div class="form-box">
+    <h2>Create an Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="form-submit">Sign Up</button>
+    </form>
+</div>
 {% endblock %}
