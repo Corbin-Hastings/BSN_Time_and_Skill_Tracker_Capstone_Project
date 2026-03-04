@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Skills</title>
+</head>
+<body>
+    <h1>Log Skills</h1>
+    <h2><a href= "/view-skills" >view skills</a></h2>
+
+    <form class="form-with-validation" action="{% url 'skills:log-skills' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button class="form-submit">Log Skill</button>
+        </form>
+</body>
+</html>

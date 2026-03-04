@@ -1,16 +1,25 @@
 from django.db import models
-
 from django.conf import settings
 
+from instructor.models import Instructor
+
+class HourTypes(models.TextChoices):
+    sim = 's', 'Sim'
+    clinic = 'c', 'Clinic'
+
+class Locations(models.TextChoices):
+    pass
+    #this can be used to input locations and lists will update dynamic
 
 class hoursLog(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                             related_name='time_entries')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='time_entries')
     hours = models.DecimalField(max_digits=5, decimal_places=2)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     location = models.CharField(max_length=300)
-    instructor = models.CharField(max_length=50)
+    types = models.CharField(max_length=50,choices=HourTypes.choices)
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
+    approved = models.BooleanField(default=False)
     #
     def save(self, *args, **kwargs):
 
