@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'helloworld',
     'accounts',
-    'hour'
+    'qr_code',
+    'hour',
+
 ]
 
 MIDDLEWARE = [

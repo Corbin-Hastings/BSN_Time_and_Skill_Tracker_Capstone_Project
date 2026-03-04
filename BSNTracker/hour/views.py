@@ -22,3 +22,10 @@ def input_view(request):
 def hours(request):
     entries = hoursLog.objects.filter(user_id = request.user)
     return render(request, 'viewhours.html', {"entries": entries})
+
+@login_required(login_url="/login")
+def passport(request):
+    return render(request, 'passport.html')
+
+def share(request):
+    return render(request, 'share.html')
