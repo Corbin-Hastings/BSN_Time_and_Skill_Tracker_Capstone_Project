@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'hour',
     'instructor',
     'skills',
-    'qr_code',
+
 
 ]
 
