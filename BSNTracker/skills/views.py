@@ -7,7 +7,7 @@ from . import forms
 
 # Create your views here.
 def skills_list(request):
-    skills = Skills.objects.all().order_by('-date')
+    skills = Skills.objects.filter(user=request.user).order_by('-date')
     return render(request, 'skills/skills_list.html', {'skills': skills})
 
 def log_new(request):

@@ -1,22 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills List</title>
-</head>
-<body>
-    <h1>skills list</h1>
-    <h2><a href="/log-skills">log skill</a></h2>
-    {% for skill in skills %}
-        <article class="skills">    
-            <h2>
-                    {{ skill.name }}
-            </h2>
-            <p>{{ skill.sai }} at {{ skill.location }} on {{ skill.completed }}  </p>
-            <p> Instructor: {{ skill.instructor }}</p>
-            <p> Status: {% if skill.approved %}Approved!{% else %}Pending{% endif %}</p>
-        </article>
-    {% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Time Entry{% endblock %}
+
+{% block content %}
+
+
+<div class="table-box">
+
+            <table>
+                <caption>Skills</caption>
+                <tr>
+            <th>Skill</th>
+            <th>Date</th>
+            <th>Level</th>
+            <th>Approve</th>
+        {% for skill in skills %}
+        </tr>
+                <tr>
+            <td>{{ skill.skill }}</td>
+            <td>{{ skill.completed }}</td>
+            <td>{{ skill.sai }}</td>
+            <td>{% if skill.approved %}Approved!{% else %}Pending{% endif %}</td>
+
+        </tr>
+                {% endfor %}
+            </table>
+
+
+</div>
+{% endblock %}
