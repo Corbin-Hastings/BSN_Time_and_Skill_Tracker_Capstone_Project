@@ -10,20 +10,21 @@
             <table>
                 <caption>Skills</caption>
                 <tr>
-            <th>Skill</th>
-            <th>Date</th>
-            <th>Level</th>
-            <th>Approve</th>
-        {% for skill in skills %}
-        </tr>
-                <tr>
-            <td>{{ skill.skill }}</td>
-            <td>{{ skill.completed }}</td>
-            <td>{{ skill.sai }}</td>
-            <td>{% if skill.approved %}Approved!{% else %}Pending{% endif %}</td>
+                    <th>Skill</th>
+                    <th>Date</th>
+                    <th>Level</th>
+                    <th>Approve</th>
+                </tr>
 
-        </tr>
+                {% for skill in skills %}
+                <tr>
+                    <td>{{ skill.get_skill_display }}</td>
+                    <td>{{ skill.completed }}</td>
+                    <td>{{ skill.get_sai_display }}</td>
+                    <td>{% if skill.approved %}Approved!{% else %}Pending{% endif %}</td>
+                </tr>
                 {% endfor %}
+
             </table>
 
 

@@ -7,90 +7,87 @@ from instructor.models import Instructor
 
 SKILL_CHOICES = (
     # assessment skills
-    ('Hand hygiene', 'HAND_HYGIENE'),
-    ('Patient identification', 'PATIENT_IDENTIFICATION'),
-    ('Pain assessment', 'PAIN_ASSESMENT'),
-    ('Vital signs (manual + electronic)', 'VITAL_SIGNS'),
-    ('Oxygen saturation', 'OXYGEN_SATURATION'),
-    ('Comprehensive head-to-toe assessment', 'COMPREHENSIVE_HTT_ASSESSMENT'),
-    ('Focused assessments', 'FOCUSED_ASSESMENTS'),
-    ('Fall risk assessment', 'FALL_RISK_ASSESSMENT'),
-    ('Skin assessment / pressure injury staging', 'SKIN ASSESSMENT'),
-    ('Neuro checks', 'NEURO_CHECKS'),
-    ('Intake & output calculation', 'IO_CALCULATION'),
-    ('Accurate documentation', 'ACCURATE_DOCUMENTATION'),
+    ('HAND_HYGIENE', 'Hand hygiene'),
+    ('PATIENT_IDENTIFICATION', 'Patient identification'),
+    ('PAIN_ASSESSMENT', 'Pain assessment'),
+    ('VITAL_SIGNS', 'Vital signs (manual + electronic)'),
+    ('OXYGEN_SATURATION', 'Oxygen saturation'),
+    ('COMPREHENSIVE_HTT_ASSESSMENT', 'Comprehensive head-to-toe assessment'),
+    ('FOCUSED_ASSESSMENTS', 'Focused assessments'),
+    ('FALL_RISK_ASSESSMENT', 'Fall risk assessment'),
+    ('SKIN_ASSESSMENT', 'Skin assessment / pressure injury staging'),
+    ('NEURO_CHECKS', 'Neuro checks'),
+    ('IO_CALCULATION', 'Intake & output calculation'),
+    ('ACCURATE_DOCUMENTATION', 'Accurate documentation'),
 
-    # #infection prevention & safety
-    # PPE donning/doffing
-    # Sterile technique
-    # Isolation precautions S
-    # Sharps safety
-    # Medication safety checks
-    # Bed safety / alarms
-    # Safe patient environment scan
-    # #ADLs
-    # Bed bath / hygiene
-    # Oral care (including dependent patient)
-    # Feeding assistance
-    # Safe patient handling
-    # Transfers (gait belt)
-    # Mechanical lifts (demo acceptable)
-    # Positioning & pressure prevention
-    # Bedmaking (occupied/unoccupied)
-    # #medication administration
-    # Six rights + three checks
-    # Oral meds
-    # Liquid meds
-    # IM injections
-    # Subcutaneous injections (incl. insulin)
-    # Medication reconciliation
-    # Barcode scanning
-    # Patient education for meds
-    # #elimination skills
-    # Bedpan / urinal
-    # Foley catheter insertion
-    # Foley care
-    # Specimen collection
-    # Bladder scan
-    # Ostomy care
-    # Enema
-    # #wound&skin care
-    # Nasal cannula
-    # Simple mask
-    # Incentive spirometry
-    # Pulse ox interpretation
-    # Cough/deep breathe coaching
-    # #fluids & basic lines
-    # IV pump programming
-    # Primary tubing setup
-    # IV site assessment
-    # Peripheral IV removal
-    # NG tube care
-    # #professional & clinical judgement skills:
-    # SBAR communication
-    # Therapeutic communication
-    # Cultural humility
-    # Informed consent awareness
-    # Delegation principles
-    # Prioritization
-    # Patient education
-    # Interprofessional communication
+    # infection prevention & safety
+    ('PPE_DONNING_DOFFING', 'PPE donning/doffing'),
+    ('STERILE_TECHNIQUE', 'Sterile technique'),
+    ('ISOLATION_PRECAUTIONS', 'Isolation precautions'),
+    ('SHARPS_SAFETY', 'Sharps safety'),
+    ('MEDICATION_SAFETY_CHECKS', 'Medication safety checks'),
+    ('BED_SAFETY_ALARMS', 'Bed safety / alarms'),
+    ('SAFE_PATIENT_ENVIRONMENT_SCAN', 'Safe patient environment scan'),
 
+    # ADLs
+    ('BED_BATH_HYGIENE', 'Bed bath / hygiene'),
+    ('ORAL_CARE_DEPENDENT_PATIENT', 'Oral care (including dependent patient)'),
+    ('FEEDING_ASSISTANCE', 'Feeding assistance'),
+    ('SAFE_PATIENT_HANDLING', 'Safe patient handling'),
+    ('TRANSFERS_GAIT_BELT', 'Transfers (gait belt)'),
+    ('MECHANICAL_LIFTS', 'Mechanical lifts (demo acceptable)'),
+    ('POSITIONING_PRESSURE_PREVENTION', 'Positioning & pressure prevention'),
+    ('BEDMAKING', 'Bedmaking (occupied/unoccupied)'),
+
+    # medication administration
+    ('SIX_RIGHTS_THREE_CHECKS', 'Six rights + three checks'),
+    ('ORAL_MEDS', 'Oral meds'),
+    ('LIQUID_MEDS', 'Liquid meds'),
+    ('IM_INJECTIONS', 'IM injections'),
+    ('SUBCUTANEOUS_INJECTIONS', 'Subcutaneous injections (incl. insulin)'),
+    ('MEDICATION_RECONCILIATION', 'Medication reconciliation'),
+    ('BARCODE_SCANNING', 'Barcode scanning'),
+    ('MEDICATION_PATIENT_EDUCATION', 'Patient education for meds'),
+
+    # elimination skills
+    ('BEDPAN_URINAL', 'Bedpan / urinal'),
+    ('FOLEY_INSERTION', 'Foley catheter insertion'),
+    ('FOLEY_CARE', 'Foley care'),
+    ('SPECIMEN_COLLECTION', 'Specimen collection'),
+    ('BLADDER_SCAN', 'Bladder scan'),
+    ('OSTOMY_CARE', 'Ostomy care'),
+    ('ENEMA', 'Enema'),
+
+    # respiratory / oxygen therapy
+    ('NASAL_CANNULA', 'Nasal cannula'),
+    ('SIMPLE_MASK', 'Simple mask'),
+    ('INCENTIVE_SPIROMETRY', 'Incentive spirometry'),
+    ('PULSE_OX_INTERPRETATION', 'Pulse ox interpretation'),
+    ('COUGH_DEEP_BREATHE_COACHING', 'Cough/deep breathe coaching'),
+
+    # fluids & basic lines
+    ('IV_PUMP_PROGRAMMING', 'IV pump programming'),
+    ('PRIMARY_TUBING_SETUP', 'Primary tubing setup'),
+    ('IV_SITE_ASSESSMENT', 'IV site assessment'),
+    ('PERIPHERAL_IV_REMOVAL', 'Peripheral IV removal'),
+    ('NG_TUBE_CARE', 'NG tube care'),
+
+    # professional & clinical judgement skills
+    ('SBAR_COMMUNICATION', 'SBAR communication'),
+    ('THERAPEUTIC_COMMUNICATION', 'Therapeutic communication'),
+    ('CULTURAL_HUMILITY', 'Cultural humility'),
+    ('INFORMED_CONSENT_AWARENESS', 'Informed consent awareness'),
+    ('DELEGATION_PRINCIPLES', 'Delegation principles'),
+    ('PRIORITIZATION', 'Prioritization'),
+    ('PATIENT_EDUCATION', 'Patient education'),
+    ('INTERPROFESSIONAL_COMMUNICATION', 'Interprofessional communication'),
 )
 
 SAI_CHOICES = (
-    ('Simulation safe', 'SIMULATION_SAFE'),
-    ('Assisted clinical', 'ASSISTED_CLINICAL'),
-    ('Independent clinical', 'INDEPENDENT_CLINICAL'),
+    ('SIMULATION_SAFE', 'Simulation safe'),
+    ('ASSISTED_CLINICAL', 'Assisted clinical'),
+    ('INDEPENDENT_CLINICAL', 'Independent clinical'),
 )
-
-# TODO - change to pulling instructors from users (sprint 2?)
-INSTRUCTOR_CHOICES = (
-    ('Instructor 1', 'INSTR_1'),
-    ('Instructor 2', 'INSTR_2'),
-    ('Instructor 3', 'INSTR_3'),
-)
-
 
 class Skills(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='skill_entries')
@@ -101,4 +98,3 @@ class Skills(models.Model):
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
     date = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
-    # TODO - foreign key
