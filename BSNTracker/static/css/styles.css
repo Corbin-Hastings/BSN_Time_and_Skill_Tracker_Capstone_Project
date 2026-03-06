@@ -1,4 +1,5 @@
 
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -102,18 +103,24 @@ form textarea {
     border: 1px solid #d6d4d4;
     text-align: left;
     padding: 10px;
+
 }
 
 .table-box th {
     background-color: #f2f2f2;
     font-size: 16px;
+
 }
 
 .table-box caption {
+    background-color: white;
+    color: black;
     caption-side: top;
     font-size: 24px;
-    font-weight: bold;
     margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,50,0.3);
+    border-radius: 6px;
+
 }
 
 

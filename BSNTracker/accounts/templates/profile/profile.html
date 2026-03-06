@@ -2,9 +2,67 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<div class="summary-box">
+{% load static %}
+<style>
+    body{
+        background-image: url("/static/images/loginBackground.jpg");
+    }
+</style>
+
+<div class="form-box">
     <h2>Welcome, {{ user.first_name }}!</h2>
     <p><b>Full Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
     <p><b>Email:</b> {{ user.email }}</p>
+</div>
+
+<div class="table-box">
+
+
+    <table>
+        <caption>Pending Skills</caption>
+        <tr>
+            <th>Skill</th>
+            <th>Date</th>
+            <th>Level</th>
+        </tr>
+
+        {% for skill in skills %}
+        {% if not skill.approved %}Pending {% endif %}
+        <tr>
+            <td>{{ skill.get_skill_display }}</td>
+            <td>{{ skill.completed }}</td>
+            <td>{{ skill.get_sai_display }}</td>
+
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+
+
+<div class="table-box">
+    <table>
+        <caption>Pending Hours</caption>
+        <tr>
+            <th>Hours</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Instructor</th>
+        </tr>
+        {% for entry in entries %}
+        {% if not entry.approved %}
+        <tr>
+            <td>{{ entry.hours }}</td>
+            <td>{{ entry.start_time|date:"M d, Y" }}</td>
+            <td>{{ entry.types }}</td>
+            <td>{{ entry.location }}</td>
+            <td>{{ entry.instructor }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
 </div>
 {% endblock %}

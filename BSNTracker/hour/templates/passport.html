@@ -4,8 +4,15 @@
  {% block title %}Skills Passport{% endblock %}
 
 {% block content %}
+{% load static %}
+<style>
+    body{
+        background-image: url("/static/images/loginBackground.jpg");
+    }
+</style>
+
 <div class="form-box">
     <h2>Share your skills</h2>
-    {% qr_from_text "https://corbinhast.pythonanywhere.com/" size="L" %}
+    {% qr_from_text "https://corbinhast.pythonanywhere.com/share" size="L" %}
 </div>
 {% endblock %}

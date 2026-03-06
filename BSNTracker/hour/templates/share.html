@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TEST</title>
-</head>
-<body>
 
-</body>
-</html>
+<style>
+.table-box th,
+.table-box td {
+    border: 1px solid #d6d4d4;
+    text-align: left;
+    padding: 10px;
+    align-items: center;
+
+}
+
+.table-box th {
+    background-color: #f2f2f2;
+    font-size: 16px;
+
+}
+
+.table-box caption {
+    background-color: white;
+    color: black;
+    caption-side: top;
+    font-size: 24px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,50,0.3);
+    border-radius: 6px;
+
+}
+
+
+</style>
+
+<div class="table-box">
+
+            <table>
+                <caption>Skills</caption>
+                <tr>
+                    <th>Skill</th>
+                    <th>Date</th>
+                    <th>Level</th>
+
+                </tr>
+
+                {% for skill in skills %}
+                {% if skill.approved %}
+                <tr>
+                    <td>{{ skill.get_skill_display }}</td>
+                    <td>{{ skill.completed }}</td>
+                    <td>{{ skill.get_sai_display }}</td>
+
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </table>
+
+
+</div>
