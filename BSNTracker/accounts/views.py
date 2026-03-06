@@ -4,6 +4,8 @@ from .forms import CustomUserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
+from skills.models import Skills
+
 # Create your views here.
 def register(request):
 
