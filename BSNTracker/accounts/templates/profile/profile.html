@@ -27,13 +27,14 @@
         </tr>
 
         {% for skill in skills %}
-        {% if not skill.approved %}Pending {% endif %}
-        <tr>
-            <td>{{ skill.get_skill_display }}</td>
-            <td>{{ skill.completed }}</td>
-            <td>{{ skill.get_sai_display }}</td>
+            {% if not skill.approved %}
+            <tr>
+                <td>{{ skill.get_skill_display }}</td>
+                <td>{{ skill.completed }}</td>
+                <td>{{ skill.get_sai_display }}</td>
 
-        </tr>
+            </tr>
+        {% endif %}
         {% endfor %}
 
     </table>

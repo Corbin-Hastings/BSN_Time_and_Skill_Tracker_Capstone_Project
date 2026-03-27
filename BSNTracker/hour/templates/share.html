@@ -1,33 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Share{% endblock %}
+{% block navbar %}
+{% endblock %}
 
-<style>
-.table-box th,
-.table-box td {
-    border: 1px solid #d6d4d4;
-    text-align: left;
-    padding: 10px;
-    align-items: center;
-
-}
-
-.table-box th {
-    background-color: #f2f2f2;
-    font-size: 16px;
-
-}
-
-.table-box caption {
-    background-color: white;
-    color: black;
-    caption-side: top;
-    font-size: 24px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 4px rgba(0,0,50,0.3);
-    border-radius: 6px;
-
-}
+{% block content %}
+{% load static %}
 
 
-</style>
 
 <div class="table-box">
 
@@ -41,13 +20,17 @@
                 </tr>
 
                 {% for skill in skills %}
-                {% if skill.approved %}
-                <tr>
-                    <td>{{ skill.get_skill_display }}</td>
-                    <td>{{ skill.completed }}</td>
-                    <td>{{ skill.get_sai_display }}</td>
+                    {% if skill.approved %}
 
-                </tr>
+
+                    <tr>
+                        <td>{{ skill.get_skill_display }}</td>
+                        <td>{{ skill.completed }}</td>
+                        <td>{{ skill.get_sai_display }}</td>
+
+                    </tr>
+
+
                 {% endif %}
                 {% endfor %}
 
@@ -55,3 +38,4 @@
 
 
 </div>
+{% endblock %}

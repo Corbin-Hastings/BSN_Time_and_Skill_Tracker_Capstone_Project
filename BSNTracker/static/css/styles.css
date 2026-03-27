@@ -103,12 +103,14 @@ form textarea {
     border: 1px solid #d6d4d4;
     text-align: left;
     padding: 10px;
+    background-color: white;
 
 }
 
 .table-box th {
     background-color: #f2f2f2;
     font-size: 16px;
+
 
 }
 

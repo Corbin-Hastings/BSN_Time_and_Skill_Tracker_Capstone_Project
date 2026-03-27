@@ -3,8 +3,11 @@ from django.shortcuts import render,redirect
 from .forms import CustomUserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from skills.models import Skills
 
 # Create your views here.
+
+
 def register(request):
 
     if request.method == "POST":
@@ -25,7 +28,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("/profile")
+            return redirect("/")
         else:
             return HttpResponseRedirect("/login")
     else:
@@ -38,5 +41,6 @@ def logout_view(request):
     return redirect("/")
 @login_required(login_url="/login")
 def profile_view(request):
+    skills = Skills.objects.filter(user=request.user).order_by('-date')
+    return render(request, "profile/profile.html", {'skills': skills})
 
-    return render(request,"profile/profile.html")

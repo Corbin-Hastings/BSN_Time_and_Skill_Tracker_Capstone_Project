@@ -1,5 +1,4 @@
-<!-- Hello and welcome to the base HTML template, here you are able to make a nav bar and such then be able to add more
- content using the block system as seen in home.html -->
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   </head>
   <body>
+  {% block navbar %}
     <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand" href="#">Western Colorado University BSN Time and Skill Tracker</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -22,7 +22,7 @@
         <ul class="navbar-nav">
         {% if user.is_authenticated %}
           <li class="nav-item active">
-            <a class="nav-link" href="/profile">Home</a>
+            <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/time_entry">Time Entry</a>
@@ -45,6 +45,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
+
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
@@ -56,6 +57,7 @@
         </ul>
       </div>
     </nav>
+  {% endblock %}
     <div class="container">{% block content %} {% endblock %}</div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" ></script>
