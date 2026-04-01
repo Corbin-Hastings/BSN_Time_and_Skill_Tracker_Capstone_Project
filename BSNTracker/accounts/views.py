@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from skills.models import Skills
 from hour.models import hoursLog
 
+from skills.models import Skills
+
 # Create your views here.
 
 
