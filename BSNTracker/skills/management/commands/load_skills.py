@@ -1,11 +1,7 @@
-from django.db import models
-from datetime import date
-from django.conf import settings
-from instructor.models import Instructor
+from django.core.management import BaseCommand
+from skills.models import Skill
 
-# Create your models here.
-
-SKILL_CHOICES = (
+SKILL_CHOICES = [
     # assessment skills
     ('HAND_HYGIENE', 'Hand hygiene'),
     ('PATIENT_IDENTIFICATION', 'Patient identification'),
@@ -81,45 +77,10 @@ SKILL_CHOICES = (
     ('PRIORITIZATION', 'Prioritization'),
     ('PATIENT_EDUCATION', 'Patient education'),
     ('INTERPROFESSIONAL_COMMUNICATION', 'Interprofessional communication'),
-)
-
-SAI_CHOICES = (
-    ('NOT_PRACTICED', 'Not practiced'),
-    ('SIMULATION_SAFE', 'Simulation safe'),
-    ('ASSISTED_CLINICAL', 'Assisted clinical'),
-    ('INDEPENDENT_CLINICAL', 'Independent clinical'),
-)
-
-class Skill(models.Model):
-    name = models.CharField(max_length=200)
-    def __str__(self):
-        return self.name
-
-class StudentSkill(models.Model):
-    student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
-    level = models.CharField(max_length=20, choices=SAI_CHOICES, default='Not practiced')
-    date = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
-    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
-    class Meta:
-        unique_together = ('student', 'skill')
-    def __str__(self):
-        return f"{self.student} - {self.skill} ({self.level})"
-
-    def save(self, *args, **kwargs):
-        if self.pk:
-            old = StudentSkill.objects.get(pk=self.pk)
-            if old.approved != self.approved:
-                self.approved = False
-        super().save(*args, **kwargs)
-
-class Skills(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='skill_entries')
-    skill = models.CharField(max_length=41, choices=SKILL_CHOICES, default='Hand hygiene')
-    sai = models.CharField(max_length=20, choices=SAI_CHOICES, default='Simulation safe')
-    completed = models.DateField(default=date.today)
-    location = models.TextField()
-    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
-    date = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
+]
+class Command(BaseCommand):
+    def handle(self, *args, **options):
+        self.stdout.write('Loading skills...')
+        for _,display_name in SKILL_CHOICES:
+            Skill.objects.get_or_create(name=display_name)
+        self.stdout.write('Done loading skills')

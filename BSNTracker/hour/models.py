@@ -1,7 +1,8 @@
 from django.db import models
 from django.conf import settings
 
-from instructor.models import Instructor
+from instructor.models import Instructor, Course
+
 
 class HourTypes(models.TextChoices):
     sim = 's', 'Sim'
@@ -16,8 +17,8 @@ class hoursLog(models.Model):
     hours = models.DecimalField(max_digits=5, decimal_places=2)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    location = models.CharField(max_length=300)
-    types = models.CharField(max_length=50,choices=HourTypes.choices)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    types = models.CharField(max_length=50,choices=HourTypes.choices,default=HourTypes.sim)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
     approved = models.BooleanField(default=False)
     #

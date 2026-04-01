@@ -14,20 +14,20 @@
     <table>
         <caption>Hours Requests</caption>
         <tr>
+            <th>Student</th>
             <th>Hours</th>
             <th>Start</th>
             <th>End</th>
-            <th>Type</th>
-            <th>Location</th>
+            <th>Course</th>
             <th>Approve</th>
         </tr>
         {% for request in requests %}
         <tr>
+            <td>{{ request.user }}</td>
             <td>{{ request.hours }}</td>
-            <td>{{ request.start_time|date:"M d, Y" }}</td>
-            <td>{{ request.end_time|date:"M d, Y"  }}</td>
-            <td>type</td>
-            <td>{{ request.location }}</td>
+            <td>{{ request.start_time|date:"M d, Y H:m" }}</td>
+            <td>{{ request.end_time|date:"M d, Y H:m"  }}</td>
+            <td>{{ request.course }}</td>
             <td><input type="checkbox" name="approvals" value={{request.id}}></td>
 
         </tr>

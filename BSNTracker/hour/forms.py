@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
+from datetime import datetime
+
 from .models import hoursLog
 from instructor.models import Instructor
 
@@ -8,13 +10,17 @@ from instructor.models import Instructor
 # TODO check for overlapping entries
 
 class HourInputForm(forms.ModelForm):
-    instructor = forms.ModelChoiceField(queryset=Instructor.objects.all(),empty_label="Select Instructor")
+    #instructor = forms.ModelChoiceField(queryset=Instructor.objects.all(),empty_label="Select Instructor")
     class Meta:
         model = hoursLog
-        fields = ['start_time', 'end_time', 'location','instructor']
+        fields = ['start_time', 'end_time','course']
 
         widgets = {
             'start_time': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
             'end_time': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
-            'location': forms.Textarea(attrs={'class': 'form-control', 'rows': 1}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['start_time'].initial = datetime.now()
+        self.fields['end_time'].initial = datetime.now()

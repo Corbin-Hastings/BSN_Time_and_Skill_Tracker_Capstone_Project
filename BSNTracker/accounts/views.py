@@ -4,6 +4,7 @@ from .forms import CustomUserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from skills.models import Skills
+from hour.models import hoursLog
 
 # Create your views here.
 
@@ -42,5 +43,6 @@ def logout_view(request):
 @login_required(login_url="/login")
 def profile_view(request):
     skills = Skills.objects.filter(user=request.user).order_by('-date')
+    hours = hoursLog.objects.filter(user=request.user).order_by('-end_time')
     return render(request, "profile/profile.html", {'skills': skills})
 

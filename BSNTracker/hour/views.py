@@ -11,7 +11,7 @@ def input_view(request):
             filled = form.save(commit=False)
             filled.user = request.user
             filled.save()
-            redirect("/profile")
+            return redirect("/")
         else:
             redirect("/")
     else:

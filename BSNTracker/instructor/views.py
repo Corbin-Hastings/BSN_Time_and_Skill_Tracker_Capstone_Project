@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from hour.models import hoursLog
 from skills.models import Skills
+from instructor.models import Instructor, Course
 
 
 # Create your views here.
@@ -21,6 +22,10 @@ def hour_approval(request):
             obj.approved = 1
             obj.save()
 
-    requests = hoursLog.objects.filter(instructor_id=request.user.id).filter(approved=0)
+    session=request.user.id
+    inst = Instructor.objects.get(user_id=session)
+    courses = inst.courses.all()
+
+    requests = hoursLog.objects.filter(course__in=courses).filter(approved=0)
     s_requests = Skills.objects.filter(instructor_id=request.user.id).filter(approved=0)
     return render(request, 'hour_approval.html',context={'requests':requests,'s_requests':s_requests})
