@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from hour.models import hoursLog
-from skills.models import Skills
+from skills.models import StudentSkill
 from instructor.models import Instructor, Course
 
 
@@ -18,7 +18,7 @@ def hour_approval(request):
             obj.approved = 1
             obj.save()
         for s in approved_skills:
-            obj = Skills.objects.get(id=s)
+            obj = StudentSkill.objects.get(pk=s)
             obj.approved = 1
             obj.save()
 
@@ -27,5 +27,5 @@ def hour_approval(request):
     courses = inst.courses.all()
 
     requests = hoursLog.objects.filter(course__in=courses).filter(approved=0)
-    s_requests = Skills.objects.filter(instructor_id=request.user.id).filter(approved=0)
+    s_requests = StudentSkill.objects.filter(instructor_id=request.user.id).filter(approved=0)
     return render(request, 'hour_approval.html',context={'requests':requests,'s_requests':s_requests})

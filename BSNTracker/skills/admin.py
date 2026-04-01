@@ -6,8 +6,7 @@ from django.contrib.auth.models import User
 
 from .models import *
 
-@admin.register(Skills)
+@admin.register(Skill)
 class AdminSkillsLog(admin.ModelAdmin):
-    list_display = ['user','skill','instructor','approved']
-    list_editable = ['skill','approved']
-    search_fields = ['user']
+    list_display = ['name']
+    search_fields = ['name']

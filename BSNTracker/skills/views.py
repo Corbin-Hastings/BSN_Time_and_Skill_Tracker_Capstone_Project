@@ -2,12 +2,12 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, redirect
-from .models import Skills
+from .models import StudentSkill
 from . import forms
 
 # Create your views here.
 def skills_list(request):
-    skills = Skills.objects.filter(user=request.user).order_by('-date')
+    skills = StudentSkill.objects.filter(student=request.user).order_by('-date')
     return render(request, 'skills/skills_list.html', {'skills': skills})
 
 def log_new(request):
@@ -15,7 +15,7 @@ def log_new(request):
         form = forms.LogSkill(request.POST)
         if form.is_valid():
             newskill = form.save(commit=False)
-            newskill.user = request.user
+            newskill.student = request.user
             newskill.save()
             return redirect('skills:list')
     else:

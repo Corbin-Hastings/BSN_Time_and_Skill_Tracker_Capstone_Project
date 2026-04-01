@@ -52,11 +52,11 @@
         </tr>
         {% for request in s_requests %}
         <tr>
-            <td>{{ request.user }}</td>
-            <td>{{ request.completed|date:"M d, Y" }}</td>
+            <td>{{ request.student }}</td>
+            <td>{{ request.date|date:"M d, Y" }}</td>
             <td>{{ request.skill }}</td>
-            <td>{{ request.sai }}</td>
-            <td><input type="checkbox" name="skills" value={{request.id}}></td>
+            <td>{{ request.level }}</td>
+            <td><input type="checkbox" name="skills" value={{request.pk}}></td>
 
         </tr>
         {% endfor %}

@@ -29,9 +29,9 @@
         {% for skill in skills %}
             {% if not skill.approved %}
             <tr>
-                <td>{{ skill.get_skill_display }}</td>
-                <td>{{ skill.completed }}</td>
-                <td>{{ skill.get_sai_display }}</td>
+                <td>{{ skill.skill }}</td>
+                <td>{{ skill.date }}</td>
+                <td>{{ skill.get_level_display }}</td>
 
             </tr>
         {% endif %}
@@ -49,18 +49,63 @@
         <tr>
             <th>Hours</th>
             <th>Date</th>
-            <th>Type</th>
-            <th>Location</th>
-            <th>Instructor</th>
+            <th>Course</th>
         </tr>
-        {% for entry in entries %}
+        {% for entry in hours %}
         {% if not entry.approved %}
         <tr>
             <td>{{ entry.hours }}</td>
             <td>{{ entry.start_time|date:"M d, Y" }}</td>
-            <td>{{ entry.types }}</td>
-            <td>{{ entry.location }}</td>
-            <td>{{ entry.instructor }}</td>
+            <td>{{ entry.course }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
+
+
+<div class="table-box">
+
+
+    <table>
+        <caption>Pending Skills</caption>
+        <tr>
+            <th>Skill</th>
+            <th>Date</th>
+            <th>Level</th>
+        </tr>
+
+        {% for skill in skills %}
+            {% if skill.approved %}
+            <tr>
+                <td>{{ skill.skill }}</td>
+                <td>{{ skill.date }}</td>
+                <td>{{ skill.get_level_display }}</td>
+
+            </tr>
+        {% endif %}
+        {% endfor %}
+
+    </table>
+
+</div>
+
+
+
+<div class="table-box">
+    <table>
+        <caption>Pending Hours</caption>
+        <tr>
+            <th>Hours</th>
+            <th>Date</th>
+            <th>Course</th>
+        </tr>
+        {% for entry in hours %}
+        {% if entry.approved %}
+        <tr>
+            <td>{{ entry.hours }}</td>
+            <td>{{ entry.start_time|date:"M d, Y" }}</td>
+            <td>{{ entry.course }}</td>
         </tr>
         {% endif %}
         {% endfor %}

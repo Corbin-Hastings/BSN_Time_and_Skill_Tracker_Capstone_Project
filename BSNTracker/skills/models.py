@@ -98,7 +98,7 @@ class Skill(models.Model):
 class StudentSkill(models.Model):
     student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
-    level = models.CharField(max_length=20, choices=SAI_CHOICES, default='Not practiced')
+    level = models.CharField(max_length=35, choices=SAI_CHOICES, default='Not practiced')
     date = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
@@ -110,16 +110,16 @@ class StudentSkill(models.Model):
     def save(self, *args, **kwargs):
         if self.pk:
             old = StudentSkill.objects.get(pk=self.pk)
-            if old.approved != self.approved:
+            if old.level != self.level:
                 self.approved = False
         super().save(*args, **kwargs)
 
-class Skills(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='skill_entries')
-    skill = models.CharField(max_length=41, choices=SKILL_CHOICES, default='Hand hygiene')
-    sai = models.CharField(max_length=20, choices=SAI_CHOICES, default='Simulation safe')
-    completed = models.DateField(default=date.today)
-    location = models.TextField()
-    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
-    date = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
+# class Skills(models.Model):
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='skill_entries')
+#     skill = models.CharField(max_length=41, choices=SKILL_CHOICES, default='Hand hygiene')
+#     sai = models.CharField(max_length=20, choices=SAI_CHOICES, default='Simulation safe')
+#     completed = models.DateField(default=date.today)
+#     location = models.TextField()
+#     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
+#     date = models.DateTimeField(auto_now_add=True)
+#     approved = models.BooleanField(default=False)

@@ -18,9 +18,9 @@
 
                 {% for skill in skills %}
                 <tr>
-                    <td>{{ skill.get_skill_display }}</td>
-                    <td>{{ skill.completed }}</td>
-                    <td>{{ skill.get_sai_display }}</td>
+                    <td>{{ skill.skill }}</td>
+                    <td>{{ skill.date }}</td>
+                    <td>{{ skill.level }}</td>
                     <td>{% if skill.approved %}Approved!{% else %}Pending{% endif %}</td>
                 </tr>
                 {% endfor %}
