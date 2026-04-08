@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import hoursLog
 from django.contrib.auth.decorators import login_required
 from .forms import HourInputForm
@@ -23,9 +23,3 @@ def hours(request):
     entries = hoursLog.objects.filter(user_id = request.user)
     return render(request, 'viewhours.html', {"entries": entries})
 
-@login_required(login_url="/login")
-def passport(request):
-    return render(request, 'passport.html')
-
-def share(request):
-    return render(request, 'share.html')

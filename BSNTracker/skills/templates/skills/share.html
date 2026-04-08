@@ -20,18 +20,13 @@
                 </tr>
 
                 {% for skill in skills %}
-                    {% if skill.approved %}
-
 
                     <tr>
-                        <td>{{ skill.get_skill_display }}</td>
-                        <td>{{ skill.completed }}</td>
-                        <td>{{ skill.get_sai_display }}</td>
+                        <td>{{ skill.skill }}</td>
+                        <td>{{ skill.date }}</td>
+                        <td>{{ skill.get_level_display }}</td>
 
                     </tr>
-
-
-                {% endif %}
                 {% endfor %}
 
             </table>
