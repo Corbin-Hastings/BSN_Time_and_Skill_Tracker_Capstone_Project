@@ -103,7 +103,7 @@ class StudentSkill(models.Model):
     approved = models.BooleanField(default=False)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
     class Meta:
-        unique_together = ('student', 'skill')
+        unique_together = ('student', 'skill','level')
     def __str__(self):
         return f"{self.student} - {self.skill} ({self.level})"
 

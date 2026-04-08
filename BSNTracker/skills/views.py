@@ -11,10 +11,7 @@ from .models import StudentSkill
 from . import forms
 
 # Create your views here.
-@login_required(login_url="/login")
-def skills_list(request):
-    skills = StudentSkill.objects.filter(student=request.user).order_by('-date')
-    return render(request, 'skills/skills_list.html', {'skills': skills})
+
 
 @login_required(login_url="/login")
 def log_new(request):
@@ -24,7 +21,7 @@ def log_new(request):
             newskill = form.save(commit=False)
             newskill.student = request.user
             newskill.save()
-            return redirect('skills:list')
+            return redirect('profile')
     else:
         form = forms.LogSkill()
     return render(request, 'skills/log_skills.html', {'form': form})

@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path("time_entry/",views.input_view,name="time entry"),
-    path("hours/", views.hours, name = "hours"),
+
 
 
 ]

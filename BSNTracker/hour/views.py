@@ -18,8 +18,5 @@ def input_view(request):
         form=HourInputForm()
 
     return render(request, 'time_entry.html',{"form":form})
-@login_required(login_url="/login")
-def hours(request):
-    entries = hoursLog.objects.filter(user_id = request.user)
-    return render(request, 'viewhours.html', {"entries": entries})
+
 

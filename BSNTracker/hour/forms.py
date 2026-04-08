@@ -13,7 +13,7 @@ class HourInputForm(forms.ModelForm):
     #instructor = forms.ModelChoiceField(queryset=Instructor.objects.all(),empty_label="Select Instructor")
     class Meta:
         model = hoursLog
-        fields = ['start_time', 'end_time','course']
+        fields = ['start_time', 'end_time','course','types']
 
         widgets = {
             'start_time': forms.DateTimeInput(format='%Y-%m-%d %H:%M',attrs={'type': 'datetime-local', 'class': 'form-control'}),
