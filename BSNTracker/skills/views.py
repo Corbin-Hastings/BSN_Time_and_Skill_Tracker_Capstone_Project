@@ -30,11 +30,11 @@ def log_new(request):
 def passport(request):
     user_id = request.user.id
     token = str(uuid.uuid4())
-    custom_url = f"http://127.0.0.1:8000/share/{user_id}/{token}"
+    custom_url = f"https://corbinhast.pythonanywhere.com/{user_id}/{token}"
     return render(request, 'skills/passport.html',  {'qr_url': custom_url})
 
 def share(request, user,token):
 
     student = get_object_or_404(CustomUser,id=user)
-    skills = StudentSkill.objects.filter(student=student, approved=False)
+    skills = StudentSkill.objects.filter(student=student, approved=True)
     return render(request, 'skills/share.html', {'skills': skills, 'student': student})
