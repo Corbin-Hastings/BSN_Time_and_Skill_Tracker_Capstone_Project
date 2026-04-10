@@ -15,6 +15,12 @@
     <p><b>Email:</b> {{ user.email }}</p>
 </div>
 
+<div class="form-box">
+    <h2><b>Total Hours: </b> {{ total_hours|floatformat:2  }}</h2>
+    <p>Simulation Hours: </p>
+    <p>Clinical Hours: </p>
+</div>
+
 <div class="table-box">
 
 
@@ -49,6 +55,7 @@
         <tr>
             <th>Hours</th>
             <th>Date</th>
+            <th>Type</th>
             <th>Course</th>
         </tr>
         {% for entry in hours %}
@@ -56,6 +63,7 @@
         <tr>
             <td>{{ entry.hours }}</td>
             <td>{{ entry.start_time|date:"M d, Y" }}</td>
+            <td>{{ entry.get_types_display }}</td>
             <td>{{ entry.course }}</td>
         </tr>
         {% endif %}
@@ -98,6 +106,7 @@
         <tr>
             <th>Hours</th>
             <th>Date</th>
+            <th>Type</th>
             <th>Course</th>
         </tr>
         {% for entry in hours %}
@@ -105,6 +114,7 @@
         <tr>
             <td>{{ entry.hours }}</td>
             <td>{{ entry.start_time|date:"M d, Y" }}</td>
+             <td>{{ entry.get_types_display }}</td>
             <td>{{ entry.course }}</td>
         </tr>
         {% endif %}

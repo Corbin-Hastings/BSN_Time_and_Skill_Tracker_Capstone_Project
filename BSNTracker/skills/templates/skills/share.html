@@ -1,8 +1,11 @@
 {% extends "base.html" %}
-
-{% block title %}Time Entry{% endblock %}
+{% block title %}Share{% endblock %}
+{% block navbar %}
+{% endblock %}
 
 {% block content %}
+{% load static %}
+
 
 
 <div class="table-box">
@@ -13,16 +16,17 @@
                     <th>Skill</th>
                     <th>Date</th>
                     <th>Level</th>
-                    <th>Approve</th>
+
                 </tr>
 
                 {% for skill in skills %}
-                <tr>
-                    <td>{{ skill.skill }}</td>
-                    <td>{{ skill.date }}</td>
-                    <td>{{ skill.level }}</td>
-                    <td>{% if skill.approved %}Approved!{% else %}Pending{% endif %}</td>
-                </tr>
+
+                    <tr>
+                        <td>{{ skill.skill }}</td>
+                        <td>{{ skill.date }}</td>
+                        <td>{{ skill.get_level_display }}</td>
+
+                    </tr>
                 {% endfor %}
 
             </table>
