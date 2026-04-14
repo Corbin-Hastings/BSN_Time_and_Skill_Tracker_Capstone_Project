@@ -30,7 +30,7 @@ def log_new(request):
 def passport(request):
     user_id = request.user.id
     token = str(uuid.uuid4())
-    custom_url = f"https://corbinhast.pythonanywhere.com/{user_id}/{token}"
+    custom_url = f"https://corbinhast.pythonanywhere.com/share/{user_id}/{token}/"
     return render(request, 'skills/passport.html',  {'qr_url': custom_url})
 
 def share(request, user,token):

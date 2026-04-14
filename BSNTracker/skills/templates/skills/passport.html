@@ -6,13 +6,11 @@
 {% block content %}
 {% load static %}
 <style>
-    body{
-        background-image: url("/static/images/loginBackground.jpg");
-    }
+
 </style>
 
-<div class="form-box">
-    <h2>Share your skills</h2>
-    {% qr_from_text qr_url size="L" %}
-</div>
+
+
+    {% qr_from_text qr_url size="M" %}
+
 {% endblock %}
