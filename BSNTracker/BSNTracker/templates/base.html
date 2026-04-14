@@ -24,6 +24,20 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
         {% if user.is_authenticated %}
+          {% if user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+
+          <li class="nav-item">
+          <a class="nav-link" href="/approve/">Approvals</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          {% else %}
+
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
@@ -40,7 +54,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
-
+          {% endif %}
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
