@@ -17,9 +17,9 @@
 </div>
 
 <div class="form-box">
-    <h2><b>Total Hours: </b> {{ total_hours|floatformat:2  }}</h2>
-    <p>Simulation Hours: </p>
-    <p>Clinical Hours: </p>
+    <h2><b>Total Hours: </b> {{ total_hours.total_hours|floatformat:2|default:0  }}</h2>
+    <p>Simulation Hours: {{ total_hours.sim_hours|floatformat:2|default:0  }} </p>
+    <p>Clinical Hours: {{ total_hours.clinic_hours|floatformat:2|default:0  }} </p>
 </div>
 
 <div class="table-box">

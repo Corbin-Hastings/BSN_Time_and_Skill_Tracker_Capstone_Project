@@ -7,7 +7,7 @@ from accounts.models import CustomUser
 
 # Create your views here.
 from django.shortcuts import render, redirect
-from .models import StudentSkill
+from .models import StudentSkill, StudentSkillRequest
 from . import forms
 
 # Create your views here.
@@ -18,9 +18,21 @@ def log_new(request):
     if request.method == 'POST':
         form = forms.LogSkill(request.POST)
         if form.is_valid():
-            newskill = form.save(commit=False)
-            newskill.student = request.user
-            newskill.save()
+            StudentSkill.objects.update_or_create(
+                student=request.user,
+                skill=form.cleaned_data['skill'],
+                defaults={
+                    'level': form.cleaned_data['level'],
+                    'instructor': form.cleaned_data['instructor'],
+                    'approved': False
+                },
+            )
+            StudentSkillRequest.objects.create(
+                student=request.user,
+                skill=form.cleaned_data['skill'],
+                level=form.cleaned_data['level'],
+                instructor=form.cleaned_data['instructor'],
+            )
             return redirect('profile')
     else:
         form = forms.LogSkill()

@@ -1,4 +1,4 @@
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from .forms import CustomUserCreationForm, AuthenticationForm
@@ -33,8 +33,6 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect("/")
-        else:
-            return HttpResponseRedirect("/login")
     else:
         form = AuthenticationForm()
 
@@ -48,8 +46,8 @@ def profile_view(request):
     skills = StudentSkill.objects.filter(student=request.user).order_by('-date')
     hours = hoursLog.objects.filter(user=request.user).order_by('-end_time')
 
-    get_hours = hours.aggregate(Sum('hours'))
-    total_hours = get_hours['hours__sum'] or 0
+    get_hours = hours.aggregate(total_hours = Sum('hours'), clinic_hours = Sum('hours' , filter=Q(types='c')),sim_hours = Sum('hours' , filter=Q(types='s')),)
+    #total_hours = get_hours['hours__sum'] or 0
 
-    return render(request, "profile/profile.html", {'skills': skills, 'hours': hours,'total_hours': total_hours})
+    return render(request, "profile/profile.html", {'skills': skills, 'hours': hours,'total_hours':get_hours})
 

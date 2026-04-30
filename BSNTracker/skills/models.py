@@ -103,16 +103,22 @@ class StudentSkill(models.Model):
     approved = models.BooleanField(default=False)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
     class Meta:
-        unique_together = ('student', 'skill','level')
+        unique_together = ('student', 'skill')
     def __str__(self):
         return f"{self.student} - {self.skill} ({self.level})"
 
-    def save(self, *args, **kwargs):
-        if self.pk:
-            old = StudentSkill.objects.get(pk=self.pk)
-            if old.level != self.level:
-                self.approved = False
-        super().save(*args, **kwargs)
+
+
+
+class StudentSkillRequest(models.Model):
+    student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
+    level = models.CharField(max_length=35, choices=SAI_CHOICES, default='Not practiced')
+    date = models.DateTimeField(auto_now_add=True)
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
+    def __str__(self):
+        return f"{self.student} - {self.skill} ({self.level}) @ {self.date:%Y-%m-%d}"
+
 
 # class Skills(models.Model):
 #     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='skill_entries')
