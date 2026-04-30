@@ -43,6 +43,9 @@ def logout_view(request):
     return redirect("/")
 @login_required(login_url="/login")
 def profile_view(request):
+    if request.user.is_authenticated and (request.user.is_staff or request.user.is_superuser):
+        return redirect('/approval')
+
     skills = StudentSkill.objects.filter(student=request.user).order_by('-date')
     hours = hoursLog.objects.filter(user=request.user).order_by('-end_time')
 

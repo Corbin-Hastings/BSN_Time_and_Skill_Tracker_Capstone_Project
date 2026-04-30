@@ -16,7 +16,7 @@ class AdminStudentSkill(admin.ModelAdmin):
     list_display = ['student','skill','level','approved','instructor']
     list_editable = ['approved','level']
     search_fields = ['name']
-
+@admin.register(StudentSkillRequest)
 class AdminStudentSkillRequest(admin.ModelAdmin):
     list_display = ['student','skill','level','instructor','date']
     search_fields = ['student','skill','instructor']
