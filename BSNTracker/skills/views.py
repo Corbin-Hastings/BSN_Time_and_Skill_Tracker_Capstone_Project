@@ -48,5 +48,5 @@ def passport(request):
 def share(request, user,token):
 
     student = get_object_or_404(CustomUser,id=user)
-    skills = StudentSkill.objects.filter(student=student, approved=True)
+    skills = StudentSkill.objects.filter(student=student, approved=1)
     return render(request, 'skills/share.html', {'skills': skills, 'student': student})
