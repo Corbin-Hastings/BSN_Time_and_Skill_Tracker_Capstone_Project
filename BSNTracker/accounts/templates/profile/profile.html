@@ -34,7 +34,7 @@
         </tr>
 
         {% for skill in skills %}
-            {% if not skill.approved %}
+            {% if skill.approved == 0 %}
             <tr>
                 <td>{{ skill.skill }}</td>
                 <td>{{ skill.date }}</td>
@@ -60,7 +60,7 @@
             <th>Course</th>
         </tr>
         {% for entry in hours %}
-        {% if not entry.approved %}
+        {% if not entry.approve == 0 %}
         <tr>
             <td>{{ entry.hours }}</td>
             <td>{{ entry.start_time|date:"M d, Y" }}</td>
@@ -85,7 +85,7 @@
         </tr>
 
         {% for skill in skills %}
-            {% if skill.approved %}
+            {% if skill.approved == 1 %}
             <tr>
                 <td>{{ skill.skill }}</td>
                 <td>{{ skill.date }}</td>
@@ -111,7 +111,7 @@
             <th>Course</th>
         </tr>
         {% for entry in hours %}
-        {% if entry.approved %}
+        {% if entry.approved == 1 %}
         <tr>
             <td>{{ entry.hours }}</td>
             <td>{{ entry.start_time|date:"M d, Y" }}</td>

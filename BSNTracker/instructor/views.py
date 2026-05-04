@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
@@ -11,16 +11,21 @@ from instructor.models import Instructor, Course
 @login_required(login_url='/login/')
 def hour_approval(request):
     if request.method == 'POST':
-        approved = request.POST.getlist('approvals')
-        approved_skills = request.POST.getlist('skills')
-        for a in approved:
-            obj = hoursLog.objects.get(id=a)
+        kind = request.POST.get('kind')
+        obj_id = request.POST.get('id')
+        action = request.POST.get('action')
+
+        model = hoursLog if kind == 'hours' else StudentSkill
+        obj = model.objects.get(pk=obj_id)
+
+        if action == 'approve':
             obj.approved = 1
             obj.save()
-        for s in approved_skills:
-            obj = StudentSkill.objects.get(pk=s)
-            obj.approved = 1
+        elif action == 'deny':
+            obj.approved = 2
             obj.save()
+
+        return redirect(request.path)
 
     session=request.user.id
     inst = Instructor.objects.get(user_id=session)

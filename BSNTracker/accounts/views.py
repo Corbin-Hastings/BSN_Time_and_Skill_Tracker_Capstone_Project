@@ -49,7 +49,7 @@ def profile_view(request):
     skills = StudentSkill.objects.filter(student=request.user).order_by('-date')
     hours = hoursLog.objects.filter(user=request.user).order_by('-end_time')
 
-    get_hours = hours.aggregate(total_hours = Sum('hours'), clinic_hours = Sum('hours' , filter=Q(types='c')),sim_hours = Sum('hours' , filter=Q(types='s')),)
+    get_hours = hours.filter(approved=1).aggregate(total_hours = Sum('hours'), clinic_hours = Sum('hours' , filter=Q(types='c')),sim_hours = Sum('hours' , filter=Q(types='s')),)
     #total_hours = get_hours['hours__sum'] or 0
 
     return render(request, "profile/profile.html", {'skills': skills, 'hours': hours,'total_hours':get_hours})

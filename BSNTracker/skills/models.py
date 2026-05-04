@@ -100,7 +100,7 @@ class StudentSkill(models.Model):
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     level = models.CharField(max_length=35, choices=SAI_CHOICES, default='Not practiced')
     date = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
+    approved = models.IntegerField(default=0)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
     class Meta:
         unique_together = ('student', 'skill')
