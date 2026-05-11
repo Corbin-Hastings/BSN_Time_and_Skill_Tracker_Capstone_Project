@@ -20,7 +20,7 @@ class hoursLog(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     types = models.CharField(max_length=50,choices=HourTypes.choices,default=HourTypes.sim)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, default=1)
-    approved = models.BooleanField(default=False)
+    approved = models.IntegerField(default=0)
     #
     def save(self, *args, **kwargs):
 
