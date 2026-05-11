@@ -1,7 +1,9 @@
 import uuid
-
+from django.utils import timezone
+from datetime import timedelta
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
 from accounts.models import CustomUser
 
@@ -40,13 +42,29 @@ def log_new(request):
 
 @login_required(login_url="/login")
 def passport(request):
+    user = request.user
     user_id = request.user.id
     token = str(uuid.uuid4())
+
+    user.custom_token = token
+    user.token_time = timezone.now()
+
+    user.save()
+
     custom_url = f"https://corbinhast.pythonanywhere.com/share/{user_id}/{token}/"
     return render(request, 'skills/passport.html',  {'qr_url': custom_url})
 
 def share(request, user,token):
-
     student = get_object_or_404(CustomUser,id=user)
+
+    if student.custom_token != token:
+        return HttpResponseForbidden("ERROR")
+
+    if not student.token_time or timezone.now() > student.token_time + timedelta(minutes=60):
+        student.custom_token = None
+        student.token_time = None
+        student.save()
+        return HttpResponseForbidden("Invalid or expired token")
+
     skills = StudentSkill.objects.filter(student=student, approved=True)
     return render(request, 'skills/share.html', {'skills': skills, 'student': student})

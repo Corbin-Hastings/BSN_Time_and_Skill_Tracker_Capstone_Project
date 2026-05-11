@@ -33,6 +33,8 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=150, blank=False)
     last_name = models.CharField(max_length=150, blank=False)
     user_type = models.CharField(max_length=3, blank=False,default='STU')
+    custom_token = models.UUIDField(null=True, blank=True)
+    token_time = models.DateTimeField(null=True, blank=True)
 
     USERNAME_FIELD = 'email'
 
